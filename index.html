@@ -1,4 +1,10 @@
 <canvas class="renderingCanvas" id="canvas"></canvas>
+<style>
+  .renderingCanvas{
+    width:100vw;
+    height:100vh;
+  }
+</style>
 <script>
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext('2d');
@@ -8,9 +14,4 @@
   ctx.lineTo(100,100);
   ctx.stroke();
 </script>
-<style>
-  .renderingCanvas{
-    width:100vw;
-    height:100vh;
-  }
-</style>
+
