@@ -10,8 +10,47 @@
   var ctx = canvas.getContext('2d');
   canvas.width = canvas.getBoundingClientRect().width;
   canvas.height = canvas.getBoundingClientRect().height;
-  ctx.moveTo(0,0);
-  ctx.lineTo(100,100);
-  ctx.stroke();
+  var screenX = canvas.width;
+  var screenY = canvas.height;
+  let lastTick = 0;
+  
+  var objects = [];
+  var playerX = 0;
+  var playerY = 0;
+  var playerZ = 0;
+  var playerVelX = 0;
+  var playerVelY = 0;
+  var playerVelZ = 0;
+
+  var fl = 1;
+  let tickSpeed = 100; 
+  
+  function renderCoords(xq,yq) {
+    return(xq/yq*fl*screenX);
+  }
+
+  function newObject(objId,p1,p2,p3/*, color, has gravity?, has collision? (HUGE WIP), friction (the exponent in which velocity decays)*/) {
+    objects[objId] = []
+    objects[objId]["coordinates"] = [p1,p2,p3];
+    objects[objId]["attributes"] = [(typeof(arguments[4]) == "string") ? arguments[4] : "#aaaaaa",(typeof(arguments[5]) == "boolean") ? arguments[5] : true,(typeof(arguments[6]) == "boolean") ? arguments[6] : true]
+    objects[objId]["material"] = [(typeof(arguments[7]) == "number") ? arguments[7] : 7]
+  }
+  //sytnax: newObject(*name*,[*x coord*,*ycoord*],[*x coord of second point*,*y coord of second point*], *same as last 2*)
+  
+  function tick() {
+    const now = Date.now();
+    const deltaTime = now - lastTick;
+
+    if (deltaTime >= tickSpeed) {
+        lastTick = now;
+        console.log("Tick");
+
+    }
+
+    requestAnimationFrame(tick);
+}
+
+
+requestAnimationFrame(tick);
 </script>
 
